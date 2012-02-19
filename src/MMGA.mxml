@@ -2,20 +2,79 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:assets="assets.*"
+			   width="100%" height="100%"
+			   minWidth="240" minHeight="400"
 			   backgroundColor="0x333333"
-			   width="240" height="400" controlBarVisible="false" frameRate="60"
-			   viewSourceURL="srcview/index.html">
+			   frameRate="60" pageTitle="MMGA"
+			   usePreloader="true" preloader="danmaq.mmga.components.CPreloader"
+			   viewSourceURL="srcview/index.html" xmlns:components="danmaq.mmga.components.*">
+	<fx:Script>
+		<![CDATA[
+			import assets.logo;
+			
+			import mx.events.ResizeEvent;
+			
+			//* instance methods ───────────────────────────*
+			
+			/**
+			 * コントローラがリサイズされた際のイベントによって呼び出されます。
+			 * 
+			 * @param evt イベント情報。
+			 */
+			private function onControlResized(event:ResizeEvent):void
+			{
+				control.width = control.height * 2.06896551724;
+			}
+			
+			/**
+			 * ダンスステージがリサイズされた際のイベントによって呼び出されます。
+			 * 
+			 * @param evt イベント情報。
+			 */
+			private function onStageResized(event:Event):void
+			{
+				danceStageParent.width = danceStageParent.height * 0.8;
+				danceStage.scaleX = danceStageParent.width / 240;
+				danceStage.scaleY = danceStageParent.height / 300;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace assets "assets.*";
+		@namespace components "danmaq.mmga.components.*";
+		global
+		{
+			font-family: "Segoe WP", "メイリオ", "Meiryo", "Segoe", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Osaka", "ＭＳ Ｐゴシック", sans-serif;
+		}
+	</fx:Style>
 	<fx:Declarations>
 		<!-- 非ビジュアルエレメント (サービス、値オブジェクトなど) をここに配置 -->
 	</fx:Declarations>
-	<s:VGroup bottom="0" width="240" height="116" gap="0" horizontalAlign="center"
-			  horizontalCenter="0" verticalAlign="bottom">
-		<s:HGroup width="240" height="76" horizontalAlign="center" paddingLeft="0"
+
+	<!-- ダンスフロアの拡大率調整のためのラッパー。 -->
+	<s:Group top="0" width="100%" height="75%"
+			 horizontalCenter="0" minWidth="240" minHeight="300"
+			 resize="onStageResized(event)" addedToStage="onStageResized(event)"
+			 id="danceStageParent">
+		<!-- ここがメイン。 -->
+		<components:CDanceStage id="danceStage" left="0" top="0" width="240" height="300"
+								debug="true"/>
+	</s:Group>
+
+	<!-- コントローラ類。 -->
+	<s:VGroup bottom="0" width="100%" height="29%" gap="0" horizontalAlign="center"
+			  horizontalCenter="0" verticalAlign="bottom" resize="onControlResized(event)"
+			  id="control">
+		<s:HGroup width="100%" height="65%" horizontalAlign="center" paddingLeft="0"
 				  verticalAlign="middle">
-			<s:Button width="72" height="72" label="☺" fontSize="36"/>
-			<s:Button width="72" height="72" label="☻" fontSize="36"/>
-			<s:Button width="72" height="72" label="☹" fontSize="36"/>
+			<s:Button width="33%" height="100%" label="Sure!" fontSize="16"/>
+			<s:Button width="33%" height="100%" label="Umm..." fontSize="16"/>
+			<s:Button width="33%" height="100%" label="No!" fontSize="16"/>
 		</s:HGroup>
-		<s:Image width="240" height="40"/>
+		<assets:logo width="100%" height="35%" minWidth="240" minHeight="40" id="logo"/>
 	</s:VGroup>
 </s:Application>
