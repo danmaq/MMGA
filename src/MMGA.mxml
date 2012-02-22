@@ -3,16 +3,15 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:assets="assets.*"
+			   xmlns:nineball.flex="danmaq.nineball.flex.components.*"
 			   width="100%" height="100%"
 			   minWidth="240" minHeight="400"
 			   backgroundColor="0x333333"
 			   frameRate="60" pageTitle="MMGA"
-			   usePreloader="true" preloader="danmaq.mmga.components.CPreloader"
+			   usePreloader="true" preloader="danmaq.nineball.flex.components.CForcePreloader"
 			   viewSourceURL="srcview/index.html" xmlns:components="danmaq.mmga.components.*">
 	<fx:Script>
 		<![CDATA[
-			import assets.logo;
-			
 			import mx.events.ResizeEvent;
 			
 			//* instance methods ───────────────────────────*
@@ -27,18 +26,6 @@
 				control.width = control.height * 2.06896551724;
 			}
 			
-			/**
-			 * ダンスステージがリサイズされた際のイベントによって呼び出されます。
-			 * 
-			 * @param evt イベント情報。
-			 */
-			private function onStageResized(event:Event):void
-			{
-				danceStageParent.width = danceStageParent.height * 0.8;
-				danceStage.scaleX = danceStageParent.width / 240;
-				danceStage.scaleY = danceStageParent.height / 300;
-			}
-			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -46,14 +33,11 @@
 	</fx:Declarations>
 
 	<!--- ダンスフロアの拡大率調整のためのラッパー。 -->
-	<s:Group top="0" width="100%" height="75%"
-			 horizontalCenter="0" minWidth="240" minHeight="300"
-			 resize="onStageResized(event)" addedToStage="onStageResized(event)"
-			 id="danceStageParent">
+	<nineball.flex:CFlexibleContainer top="0" width="100%" height="75%"
+			 horizontalCenter="0" minWidth="240" minHeight="300">
 		<!--- ここがメイン。 -->
-		<components:CDanceStage id="danceStage" left="0" top="0" width="240" height="300"
-								debug="true"/>
-	</s:Group>
+		<components:CDanceStage left="0" top="0" width="240" height="300" debug="true"/>
+	</nineball.flex:CFlexibleContainer>
 
 	<!--- コントローラ類。 -->
 	<s:VGroup bottom="0" width="100%" height="29%" gap="0" horizontalAlign="center"
@@ -66,6 +50,6 @@
 			<s:Button width="33%" height="100%" label="No!" fontSize="16"/>
 		</s:HGroup>
 		<!--- MMGAロゴ。 -->
-		<assets:logo width="100%" height="35%" minWidth="240" minHeight="40" id="logo"/>
+		<assets:logo width="100%" height="35%" minWidth="240" minHeight="40"/>
 	</s:VGroup>
 </s:Application>
