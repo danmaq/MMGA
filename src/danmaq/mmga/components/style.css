@@ -1,0 +1,10 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace nineball_flex "danmaq.nineball.flex.components.*";
+@namespace components "danmaq.mmga.components.*";
+
+#fps
+{
+	color: White;
+}

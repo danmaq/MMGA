@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="MMGA.mxml" projectUUID="3bd0dae7-283a-489d-808f-ae7c01315328" version="10">
+<actionScriptProperties analytics="false" mainApplicationPath="danmaq/mmga/components/MMGA.mxml" projectUUID="3bd0dae7-283a-489d-808f-ae7c01315328" version="10">
   <compiler additionalCompilerArguments="-locale ja_JP" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="1">
@@ -16,7 +16,7 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="MMGA.mxml"/>
+    <application path="danmaq/mmga/components/MMGA.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
