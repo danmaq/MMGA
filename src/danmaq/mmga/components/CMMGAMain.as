@@ -1,7 +1,11 @@
 package danmaq.mmga.components
 {
-	import danmaq.mmga.assets.CResources;
-	import danmaq.nineball.core.util.object.blockDuplicate;
+
+	import danmaq.mmga.state.CStateInitialize;
+	import danmaq.nineball.core.component.context.CContext;
+	
+	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import mx.core.UIComponent;
 	
@@ -19,8 +23,8 @@ package danmaq.mmga.components
 		
 		//* constants ──────────────────────────────-*
 		
-		/** クラス インスタンス。 */
-		private static var _instance:CMMGAMain; 
+		/** 状態による制御AI。 */
+		private static var _context:CContext;
 
 		//* constructor & destructor ───────────────────────*
 		
@@ -29,22 +33,27 @@ package danmaq.mmga.components
 		 */
 		public function CMMGAMain()
 		{
-			blockDuplicate(this, _instance);
-			_instance = this;
+			if(_context == null)
+			{
+				_context = new CContext(CStateInitialize.instance, this);
+				addEventListener(Event.ENTER_FRAME, _context.updateFromEvent);
+			}
 			var ds:CDanceStage = new CDanceStage();
 			ds.debug = true;
 			addChild(ds);
+			addEventListener(Event.ADDED_TO_STAGE, function(e:*):void{trace(root);});
 		}
 
 		//* class properties ───────────────────────────*
 		
 		/**
-		 * クラス インスタンスを取得します。
+		 * 状態による制御AIを取得します。
+		 *
+		 * @return 状態による制御AI。
 		 */
-		public static function get instance():CMMGAMain
+		public static function get context():CContext
 		{
-			return _instance;
+			return _context;
 		}
-		
 	}
 }
