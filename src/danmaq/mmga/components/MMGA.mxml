@@ -21,13 +21,27 @@
 	<!--- ダンスフロアの拡大率調整のためのラッパー。 -->
 	<nineball.flex:CFlexibleContainer top="0" width="100%" height="75%"
 			 horizontalCenter="0" minWidth="240" minHeight="300">
-		<!--- ここがメイン。 -->
-		<components:CMMGAMain left="0" top="0" width="240" height="300"/>
+		<!--- アプリケーションのメイン ロジック クラス。 -->
+		<components:CMMGAMain id="mmga" left="0" top="0" width="240" height="300"/>
 	</nineball.flex:CFlexibleContainer>
 
 	<!--- コントローラ類。 -->
 	<nineball.flex:CFlexibleContainer bottom="0" width="100%" height="29%" 
 									  horizontalCenter="0" minWidth="240" minHeight="116">
-		<components:CController bottom="0"/>
+		<s:VGroup width="240" height="116" gap="0" horizontalAlign="center" horizontalCenter="0"
+				  verticalAlign="bottom">
+			<s:HGroup width="100%" height="65%" horizontalAlign="center" paddingLeft="0"
+					  verticalAlign="middle">
+				<s:Button width="33%" height="100%" label="Sure!" cornerRadius="0" fontSize="16"/>
+				<s:Button width="33%" height="100%" label="Umm..." cornerRadius="0" fontSize="16"/>
+				<s:Button width="33%" height="100%" label="No!" cornerRadius="0" fontSize="16"/>
+			</s:HGroup>
+			<s:Group width="100%" height="35%" minWidth="240" minHeight="40">
+				<!--- MMGAロゴ。 -->
+				<components:logo width="100%" height="100%"/>
+				<!--- FPS表示用ラベル。 -->
+				<nineball.flex:CFPSViewer right="0" bottom="0" styleName="field"/>
+			</s:Group>
+		</s:VGroup>
 	</nineball.flex:CFlexibleContainer>
 </s:Application>

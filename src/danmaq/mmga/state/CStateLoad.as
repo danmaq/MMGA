@@ -1,22 +1,31 @@
 package danmaq.mmga.state
 {
-	import danmaq.mmga.components.MMGA;
+	import danmaq.mmga.assets.CResources;
+	import danmaq.mmga.components.CDanceStage;
+	import danmaq.mmga.components.CMMGAMain;
+	import danmaq.mmga.data.CDanceMaster;
+	import danmaq.mmga.data.CStaticPreference;
 	import danmaq.nineball.core.component.context.CContextBody;
 	import danmaq.nineball.core.component.state.IState;
 	import danmaq.nineball.core.util.object.blockDuplicate;
 	
+	import mx.rpc.events.FaultEvent;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.http.HTTPService;
+	import mx.utils.ObjectUtil;
+	
 	/**
-	 * 初期化の状態。
+	 * ダンスデータ読み出しの状態。
 	 *
 	 * @author Mc(danmaq)
 	 */
-	public final class CStateInitialize implements IState
+	public final class CStateLoad implements IState
 	{
 		
 		//* constants ──────────────────────────────-*
 		
 		/** クラス インスタンス。 */
-		public static const instance:IState = new CStateInitialize();
+		public static const instance:IState = new CStateLoad();
 		
 		//* constructor & destructor ───────────────────────*
 		
@@ -30,7 +39,7 @@ package danmaq.mmga.state
 		 *
 		 * @see #instance
 		 */
-		public function CStateInitialize()
+		public function CStateLoad()
 		{
 			blockDuplicate(this, instance);
 		}
@@ -44,7 +53,23 @@ package danmaq.mmga.state
 		 */
 		public function setup(body:CContextBody):void
 		{
-			trace("initialize start");
+			var main:CMMGAMain = body.owner as CMMGAMain;
+			trace("load start");
+			trace(CStaticPreference.instance.url);
+			var service:HTTPService = new HTTPService(CStaticPreference.instance.url);
+			service.url = "result.json";
+			service.headers["Accept"] =
+				"application/json, text/plain;q=0.9, */*;q=0.1";
+			service.resultFormat = "text";
+			service.addEventListener(ResultEvent.RESULT, trace);
+			service.addEventListener(FaultEvent.FAULT, trace);
+			service.send();
+			CDanceMaster.receive(new CResources.JSON_TEST());
+
+			var ds:CDanceStage = new CDanceStage();
+			ds.debug = true;
+			main.addElement(ds);
+		
 		}
 		
 		/**
@@ -54,7 +79,6 @@ package danmaq.mmga.state
 		 */
 		public function update(body:CContextBody):void
 		{
-			body.context.nextState = CStateLoad.instance;
 		}
 		
 		/**

@@ -4,7 +4,10 @@
 @namespace nineball_flex "danmaq.nineball.flex.components.*";
 @namespace components "danmaq.mmga.components.*";
 
-#fps
+.field
 {
 	color: White;
+	fontFamily: "Segoe WP", "Segoe UI", "Meiryo UI", "メイリオ", "MS UI Gothic", "MS PGothic",
+		"ＭＳ Ｐゴシック", "_sans";
 }
+

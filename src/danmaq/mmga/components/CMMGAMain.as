@@ -5,20 +5,15 @@ package danmaq.mmga.components
 	import danmaq.nineball.core.component.context.CContext;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
-	import mx.core.UIComponent;
+	import spark.components.Group;
 	
 	/**
 	 * アプリケーションのメイン ロジック クラス。
 	 * 
-	 * <p>
-	 * ドキュメント クラスにのみ設置可能な、シングルトン オブジェクトです。
-	 * </p>
-	 * 
 	 * @author Mc(danmaq)
 	 */
-	public final class CMMGAMain extends UIComponent
+	public final class CMMGAMain extends Group
 	{
 		
 		//* constants ──────────────────────────────-*
@@ -38,10 +33,6 @@ package danmaq.mmga.components
 				_context = new CContext(CStateInitialize.instance, this);
 				addEventListener(Event.ENTER_FRAME, _context.updateFromEvent);
 			}
-			var ds:CDanceStage = new CDanceStage();
-			ds.debug = true;
-			addChild(ds);
-			addEventListener(Event.ADDED_TO_STAGE, function(e:*):void{trace(root);});
 		}
 
 		//* class properties ───────────────────────────*

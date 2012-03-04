@@ -17,6 +17,18 @@ package danmaq.mmga.components
 	/**
 	 * モデルを躍らせるステージ。
 	 * 
+	 * @mxml
+	 * 
+	 *  <p>The <code>&lt;components:CDanceStage&gt;</code> tag inherits all of the tag 
+	 *  attributes of its superclass and adds the following tag attributes:</p>
+	 *
+	 *  <pre>
+	 *  &lt;components:CDanceStage
+	 *    <strong>Properties</strong>
+	 *    debug="false"
+	 *  /&gt;
+	 *  </pre>
+	 * 
 	 * @author Mc(danmaq)
 	 */
 	public final class CDanceStage extends UIComponent

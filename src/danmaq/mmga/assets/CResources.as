@@ -13,8 +13,12 @@ package danmaq.mmga.assets
 		//* fields ────────────────────────────────*
 		
 		/**	テスト用のレスポンスJSON。 */
-		[Embed(source="../embed/response/result.json", mimeType="application/octet-stream")]
+		[Embed(source="../embed/json/result.json", mimeType="application/octet-stream")]
 		public static var JSON_TEST:Class;
+		
+		/**	設定用JSON。 */
+		[Embed(source="../embed/json/preference.json", mimeType="application/octet-stream")]
+		public static var JSON_PREFERENCE:Class;
 		
 		//* constructor & destructor ───────────────────────*
 		
