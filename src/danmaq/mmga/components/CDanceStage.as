@@ -9,10 +9,11 @@ package danmaq.mmga.components
 	import Box2D.Dynamics.b2FixtureDef;
 	import Box2D.Dynamics.b2World;
 	
-	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import mx.core.UIComponent;
+	
+	import spark.components.Group;
 	
 	/**
 	 * モデルを躍らせるステージ。
@@ -31,7 +32,7 @@ package danmaq.mmga.components
 	 * 
 	 * @author Mc(danmaq)
 	 */
-	public final class CDanceStage extends UIComponent
+	public final class CDanceStage extends Group
 	{
 
 		//* constants ──────────────────────────────-*
@@ -53,7 +54,10 @@ package danmaq.mmga.components
 		public const world:b2World = new b2World(new b2Vec2(0, 10), true);
 
 		/** デバッグ表示用スプライト。 */
-		private const debugSprite:Sprite = new Sprite();
+		private const debugSprite:UIComponent = new UIComponent();
+		
+		/** モデル。 */
+		private var _model:CModel;
 		
 		//* constructor & destructor ───────────────────────*
 		
@@ -66,21 +70,11 @@ package danmaq.mmga.components
 			height = 300;
 			initializeGround();
 
-//			// 新しい物体の作成する場合（b2_dynamicBodyを指定している）
-//			var bodyDef:b2BodyDef = new b2BodyDef();
-//			bodyDef.type = b2Body.b2_dynamicBody;
-//			var body:b2Body = world.CreateBody(bodyDef);
-//			var dynamicBox:b2CircleShape = new b2CircleShape(0.2);
-//			var fixtureDef:b2FixtureDef = new b2FixtureDef();
-//			fixtureDef.shape = dynamicBox;
-//			fixtureDef.density = 1;
-//			fixtureDef.friction = 0.3;
-//			body.CreateFixture(fixtureDef);
-			
 			initializeDebugView();
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			_model = new CModel(world);
 		}
 
 		//* instance properties ─────────────────────────-*
@@ -104,7 +98,7 @@ package danmaq.mmga.components
 		{
 			if(value != debug)
 			{
-				(value ? addChild : removeChild)(debugSprite);
+				(value ? addElement : removeElement)(debugSprite);
 			}
 		}
 		

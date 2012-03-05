@@ -69,7 +69,6 @@ package danmaq.mmga.state
 			var ds:CDanceStage = new CDanceStage();
 			ds.debug = true;
 			main.addElement(ds);
-		
 		}
 		
 		/**
