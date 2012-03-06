@@ -30,6 +30,7 @@ package danmaq.mmga.components
 		 */
 		public function CModel(world:b2World)
 		{
+			
 //			// 新しい物体の作成する場合（b2_dynamicBodyを指定している）
 //			var bodyDef:b2BodyDef = new b2BodyDef();
 //			bodyDef.type = b2Body.b2_dynamicBody;
