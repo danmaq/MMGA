@@ -1,5 +1,8 @@
 package danmaq.mmga.components
 {
+	import Box2D.Collision.Shapes.b2CircleShape;
+	import Box2D.Dynamics.b2Body;
+	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2World;
 	
 	import mx.core.UIComponent;
@@ -30,14 +33,15 @@ package danmaq.mmga.components
 		 */
 		public function CModel(world:b2World)
 		{
+			// 新しい物体の作成する場合（b2_dynamicBodyを指定している）
+			var bodyDef:b2BodyDef = new b2BodyDef();
+			bodyDef.type = b2Body.b2_dynamicBody;
+			var shape:b2CircleShape = new b2CircleShape(0.2);
 			
-//			// 新しい物体の作成する場合（b2_dynamicBodyを指定している）
-//			var bodyDef:b2BodyDef = new b2BodyDef();
-//			bodyDef.type = b2Body.b2_dynamicBody;
 //			var body:b2Body = world.CreateBody(bodyDef);
-//			var dynamicBox:b2CircleShape = new b2CircleShape(0.2);
+//			var shape:b2CircleShape = new b2CircleShape(0.2);
 //			var fixtureDef:b2FixtureDef = new b2FixtureDef();
-//			fixtureDef.shape = dynamicBox;
+//			fixtureDef.shape = shape;
 //			fixtureDef.density = 1;
 //			fixtureDef.friction = 0.3;
 //			body.CreateFixture(fixtureDef);
