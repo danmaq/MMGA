@@ -38,7 +38,7 @@ package danmaq.mmga.components
 		//* constants ──────────────────────────────-*
 
 		/** ピクセル：メートル比。 */
-		private const PIXELS_TO_METRE:int = 120;  
+		public static const PIXELS_TO_METRE:int = 140;  
 
 		/** ステージの幅。 */
 		private const SWF_HALF_WIDTH:int = 120;  
@@ -119,6 +119,8 @@ package danmaq.mmga.components
 				b2DebugDraw.e_aabbBit | b2DebugDraw.e_centerOfMassBit | b2DebugDraw.e_controllerBit |
 				b2DebugDraw.e_jointBit | b2DebugDraw.e_pairBit | b2DebugDraw.e_shapeBit);
 			world.SetDebugDraw(debugDraw);
+			debugSprite.x = SWF_HALF_WIDTH;
+			debugSprite.y = 300;
 		}
 		
 		/**
@@ -128,8 +130,7 @@ package danmaq.mmga.components
 		{
 			// 物理単位（メートル）とピクセルの対応比率を指定する「物体の定義」
 			var groundBodyDef:b2BodyDef= new b2BodyDef();
-			groundBodyDef.position.Set(SWF_HALF_WIDTH / PIXELS_TO_METRE,
-				SWF_HEIGHT / PIXELS_TO_METRE);
+			groundBodyDef.position.Set(0, 0);
 			// 「世界」に物体を生成する
 			var groundBody:b2Body = world.CreateBody(groundBodyDef);
 			// 「形状」を生成する
