@@ -46,11 +46,7 @@ package danmaq.mmga.components
 		/** ステージの高さ。 */
 		private const SWF_HEIGHT:int = 300;  
 		
-		/**
-		 * 物理演算空間。
-		 * 
-		 * @see Box2D.Dynamics.b2World
-		 */
+		/** 物理演算空間。 */
 		public const world:b2World = new b2World(new b2Vec2(0, 10), true);
 
 		/** デバッグ表示用スプライト。 */
