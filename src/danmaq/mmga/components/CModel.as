@@ -79,12 +79,6 @@ package danmaq.mmga.components
 			_headToNeck = createJoint(head, neck, new b2Vec2(0, -1.3));
 			_neckToTorso1 = createJoint(neck, torso1, new b2Vec2(0, -1.2));
 		}
-
-		private function createJoint(bodyA:b2Body, bodyB:b2Body, joint:b2Vec2):b2Joint
-		{
-			jointDef.Initialize(bodyA, bodyB, new b2Vec2(0, -1.3));
-			return _world.CreateJoint(jointDef);
-		}
 		
 		/**
 		 * 円形物質を作成します。
@@ -138,6 +132,19 @@ package danmaq.mmga.components
 			var body:b2Body = _world.CreateBody(bodyDef);
 			body.CreateFixture(fixtureDef);
 			return body;
+		}
+		
+		/**
+		 * 関節を作成します。
+		 * 
+		 * @param bodyA 関節で接続する物体。
+		 * @param bodyB 関節で接続する物体。
+		 * @param joint 座標。
+		 */
+		private function createJoint(bodyA:b2Body, bodyB:b2Body, joint:b2Vec2):b2Joint
+		{
+			jointDef.Initialize(bodyA, bodyB, new b2Vec2(0, -1.3));
+			return _world.CreateJoint(jointDef);
 		}
 	}
 }
